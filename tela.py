@@ -61,6 +61,9 @@ frame_tabela.grid_propagate(False)
 def membro():
     print('membro')
 
+def update():
+    print('Atualizar')
+
 #Controle--------------------------------------
 
 def control(i):
@@ -72,17 +75,33 @@ def control(i):
             widget.destroy()
 
         membro()
+    elif i == 'atualizar':
+        for widget in frame_detalhes.winfo_children():
+            widget.destroy()
+
+        for widget in frame_tabela.winfo_children():
+            widget.destroy()
+
+        update()
 
 
 
 
 #Botões-------------------------------------
+#Botão Cadastrar Membro
 imagem_cadastro = Image.open('adicionar.png')
 imagem_cadastro = imagem_cadastro.resize((18,18))
 imagem_cadastro = ImageTk.PhotoImage(imagem_cadastro)
 botao_cadastro = Button(frame_dados, command=lambda:control('cadastro'), image = imagem_cadastro, text="Cadastro", width=100, compound=LEFT, overrelief=RIDGE, font=('Ivy 11'), bg=cor1, fg=cor21)
 # botao_cadastro.place(x=10, y=30)
 botao_cadastro.grid(row=1, column=0)
+
+#Botão Atualizar Membro
+imagem_atualizar = Image.open('atualizar.png')
+imagem_atualizar = imagem_atualizar.resize((18,18))
+imagem_atualizar = ImageTk.PhotoImage(imagem_atualizar)
+botao_atualizar = Button(frame_dados, command=lambda:control('atualizar'), image = imagem_atualizar, text="Atualizar User", width=100, compound=LEFT, overrelief=RIDGE, font=('Ivy 11'), bg=cor1, fg=cor21)
+botao_atualizar.grid(row=1, column=1)
 
 # Test --------------------------------------
 
@@ -97,6 +116,7 @@ ttk.Button(frame_logo, text="Quit", command=janela.destroy).grid(column=2, row=0
 
 #Abrir a tela ---------------------------------------
 janela.mainloop()
+
 
 
 
