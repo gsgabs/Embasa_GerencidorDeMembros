@@ -1,7 +1,8 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter.ttk import Style
-import Pillow
+from PIL import Image, ImageTk
+
 
 cor1 = "#E6E6FA"  #Lavanda
 cor2 = "#EE82EE"  #Violeta
@@ -23,6 +24,7 @@ cor17 = "#00FFFF" #Água
 cor18 = "#E0FFFF" #Light Cyan
 cor19 = "#40E0D0" #Turquesa
 cor20 = "#00BFFF" #DeepSkyBlue
+cor21 = "#36454F" #Carvão
 
 
 #Criando Janela -----------------------------------------------------------
@@ -62,8 +64,12 @@ def control(i):
 
 
 #Botões-------------------------------------
-botao_cadastro =
-
+imagem_cadastro = Image.open('adicionar.png')
+imagem_cadastro = imagem_cadastro.resize((18,18))
+imagem_cadastro = ImageTk.PhotoImage(imagem_cadastro)
+botao_cadastro = Button(frame_dados, image = imagem_cadastro, text="Cadastro", width=100, compound=LEFT, overrelief=RIDGE, font=('Ivy 11'), bg=cor1, fg=cor21)
+# botao_cadastro.place(x=10, y=30)
+botao_cadastro.grid(row=1, column=0)
 
 # Test --------------------------------------
 
@@ -72,8 +78,8 @@ botao_cadastro =
 # ttk.Separator(janela, orient=HORIZONTAL).grid(row=3, columnspan=1,ipadx=1450)
 
 #Botões
-ttk.Label(frame_dados, text="Hello World!").grid(row=0, column=0)
-ttk.Button(frame_dados, text="Quit", command=janela.destroy).grid(column=1, row=0)
+ttk.Label(frame_dados, text="Hello World!").grid(row=1, column=1)
+ttk.Button(frame_dados, text="Quit", command=janela.destroy).grid(column=2, row=0)
 
 
 #Abrir a tela ------------------------------
