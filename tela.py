@@ -43,17 +43,17 @@ frame_logo.grid(row=0, column=0, pady=0, padx=0, sticky=NSEW)
 frame_logo.grid_propagate(False)
 
 #Frame Dados
-frame_dados = Frame(janela, width=1450, height=75, bg=cor10)
+frame_dados = Frame(janela, width=1450, height=60, bg=cor10)
 frame_dados.grid(row=2, column=0, padx=0, sticky=NSEW)
 frame_dados.grid_propagate(False)
 
 #Frame Detalhes
-frame_detalhes = Frame(janela, width=1450, height=200, bg=cor14)
+frame_detalhes = Frame(janela, width=1450, height=300, bg=cor16)
 frame_detalhes.grid(row=4, column=0, padx=10, sticky=NSEW)
 frame_detalhes.grid_propagate(False)
 
 #Frame Tabela
-frame_tabela = Frame(janela, width=1450, height=200, bg=cor7)
+frame_tabela = Frame(janela, width=1450, height=308, bg=cor12)
 frame_tabela.grid(row=5, column=0, pady=0, padx=10, sticky=NSEW)
 frame_tabela.grid_propagate(False)
 
