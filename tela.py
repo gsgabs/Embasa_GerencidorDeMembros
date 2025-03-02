@@ -57,17 +57,30 @@ frame_tabela = Frame(janela, width=1450, height=200, bg=cor7)
 frame_tabela.grid(row=5, column=0, pady=0, padx=10, sticky=NSEW)
 frame_tabela.grid_propagate(False)
 
+#Função para cadastrar alunos
+def membro():
+    print('membro')
+
 #Controle--------------------------------------
 
 def control(i):
-    pass
+    if i == 'cadastro':
+        for widget in frame_detalhes.winfo_children():
+            widget.destroy()
+
+        for widget in frame_tabela.winfo_children():
+            widget.destroy()
+
+        membro()
+
+
 
 
 #Botões-------------------------------------
 imagem_cadastro = Image.open('adicionar.png')
 imagem_cadastro = imagem_cadastro.resize((18,18))
 imagem_cadastro = ImageTk.PhotoImage(imagem_cadastro)
-botao_cadastro = Button(frame_dados, image = imagem_cadastro, text="Cadastro", width=100, compound=LEFT, overrelief=RIDGE, font=('Ivy 11'), bg=cor1, fg=cor21)
+botao_cadastro = Button(frame_dados, command=lambda:control('cadastro'), image = imagem_cadastro, text="Cadastro", width=100, compound=LEFT, overrelief=RIDGE, font=('Ivy 11'), bg=cor1, fg=cor21)
 # botao_cadastro.place(x=10, y=30)
 botao_cadastro.grid(row=1, column=0)
 
@@ -78,11 +91,11 @@ botao_cadastro.grid(row=1, column=0)
 # ttk.Separator(janela, orient=HORIZONTAL).grid(row=3, columnspan=1,ipadx=1450)
 
 #Botões
-ttk.Label(frame_dados, text="Hello World!").grid(row=1, column=1)
-ttk.Button(frame_dados, text="Quit", command=janela.destroy).grid(column=2, row=0)
+ttk.Label(frame_tabela, text="Hello World!").grid(row=1, column=1)
+ttk.Button(frame_logo, text="Quit", command=janela.destroy).grid(column=2, row=0)
 
 
-#Abrir a tela ------------------------------
+#Abrir a tela ---------------------------------------
 janela.mainloop()
 
 
