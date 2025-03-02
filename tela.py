@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+from tkinter.ttk import Style
 
 cor1 = "#E6E6FA"  #Lavanda
 cor2 = "#EE82EE"  #Violeta
@@ -23,11 +24,37 @@ cor19 = "#40E0D0" #Turquesa
 cor20 = "#00BFFF" #DeepSkyBlue
 
 
-
+#Criando Janela
 janela = Tk()
 janela.title("Tela-01")
-janela.geometry('850x620')
+janela.geometry('1450x720')
 janela.configure(background=cor20)
+
+Estilo = Style(janela)
+Estilo.theme_use("clam")
+
+#Criando Frames
+frame_logo = Frame(janela, width=1450, height=52, bg=cor18)
+frame_logo.grid(row=0, column=0, pady=0, padx=0, sticky=NSEW)
+
+#Linha
+ttk.Separator(janela, orient=HORIZONTAL).grid(row=1, columnspan=1,ipadx=1450)
+
+#Frame
+frame_dados = Frame(janela, width=1450, height=65, bg=cor10)
+frame_dados.grid(row=2, column=0, padx=0, sticky=NSEW)
+
+#Linha
+ttk.Separator(janela, orient=HORIZONTAL).grid(row=3, columnspan=1,ipadx=1450)
+
+#Frame
+frame_detalhes = Frame(janela, width=1450, height=200, bg=cor14)
+frame_detalhes.grid(row=4, column=0, padx=10, sticky=NSEW)
+
+frame_tabela = Frame(janela, width=1450, height=200, bg=cor7)
+frame_tabela.grid(row=5, column=0, pady=0, padx=10, sticky=NSEW)
+
+
 
 janela.mainloop()
 
