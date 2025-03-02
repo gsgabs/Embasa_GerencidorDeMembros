@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter.ttk import Style
+import Pillow
 
 cor1 = "#E6E6FA"  #Lavanda
 cor2 = "#EE82EE"  #Violeta
@@ -24,7 +25,7 @@ cor19 = "#40E0D0" #Turquesa
 cor20 = "#00BFFF" #DeepSkyBlue
 
 
-#Criando Janela
+#Criando Janela -----------------------------------------------------------
 janela = Tk()
 janela.title("Tela-01")
 janela.geometry('1450x720')
@@ -33,6 +34,7 @@ janela.configure(background=cor20)
 Estilo = Style(janela)
 Estilo.theme_use("clam")
 
+#Criando Frames------------------------------------------------------------------------
 #Frame Logo
 frame_logo = Frame(janela, width=1450, height=52, bg=cor18)
 frame_logo.grid(row=0, column=0, pady=0, padx=0, sticky=NSEW)
@@ -53,6 +55,18 @@ frame_tabela = Frame(janela, width=1450, height=200, bg=cor7)
 frame_tabela.grid(row=5, column=0, pady=0, padx=10, sticky=NSEW)
 frame_tabela.grid_propagate(False)
 
+#Controle--------------------------------------
+
+def control(i):
+    pass
+
+
+#Botões-------------------------------------
+botao_cadastro =
+
+
+# Test --------------------------------------
+
 #Linha
 # ttk.Separator(janela, orient=HORIZONTAL).grid(row=1, columnspan=1,ipadx=1450)
 # ttk.Separator(janela, orient=HORIZONTAL).grid(row=3, columnspan=1,ipadx=1450)
@@ -62,14 +76,8 @@ ttk.Label(frame_dados, text="Hello World!").grid(row=0, column=0)
 ttk.Button(frame_dados, text="Quit", command=janela.destroy).grid(column=1, row=0)
 
 
+#Abrir a tela ------------------------------
 janela.mainloop()
 
-
-# root = Tk()
-# frm = ttk.Frame(root, padding=10)
-# frm.grid()
-# ttk.Label(frm, text="Hello World!").grid(column=0, row=0)
-# ttk.Button(frm, text="Quit", command=root.destroy).grid(column=1, row=0)
-# root.mainloop()
 
 
