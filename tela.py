@@ -64,6 +64,9 @@ def membro():
 def update():
     print('Atualizar')
 
+def deletar():
+    print('Excluído com sucesso')
+
 #Controle--------------------------------------
 
 def control(i):
@@ -83,8 +86,14 @@ def control(i):
             widget.destroy()
 
         update()
+    elif i == 'deletar':
+        for widget in frame_detalhes.winfo_children():
+            widget.destroy()
 
+        for widget in frame_tabela.winfo_children():
+            widget.destroy()
 
+        deletar()
 
 
 #Botões-------------------------------------
@@ -102,6 +111,13 @@ imagem_atualizar = imagem_atualizar.resize((18,18))
 imagem_atualizar = ImageTk.PhotoImage(imagem_atualizar)
 botao_atualizar = Button(frame_dados, command=lambda:control('atualizar'), image = imagem_atualizar, text="Atualizar User", width=100, compound=LEFT, overrelief=RIDGE, font=('Ivy 11'), bg=cor1, fg=cor21)
 botao_atualizar.grid(row=1, column=1)
+
+#Botão Deletar Membro
+imagem_excluir = Image.open('excluir.png')
+imagem_excluir = imagem_excluir.resize((18,18))
+imagem_excluir = ImageTk.PhotoImage(imagem_excluir)
+botao_deletar = Button(frame_dados, command=lambda:control('deletar'), image = imagem_excluir, text="Deletar User", width=100, compound=LEFT, overrelief=RIDGE, font=('Ivy 11'), bg=cor1, fg=cor21)
+botao_deletar.grid(row=1, column=2)
 
 # Test --------------------------------------
 
