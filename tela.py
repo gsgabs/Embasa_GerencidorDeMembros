@@ -4,6 +4,7 @@ from tkinter.ttk import Style
 from PIL import Image, ImageTk
 from tkcalendar import DateEntry, Calendar
 from datetime import date
+# import filediolague
 
 
 #Cores-------------------------------------------
@@ -100,7 +101,7 @@ def mostrar_tabela():
    tree_membro.insert('', 'end', values=item)
 
 #Funções dos botões ------------------------------------------
-#Mostra frame de cadastro
+#Mostra tela de cadastro
 def cadastrar():
     print('membro')
 
@@ -129,8 +130,17 @@ def cadastrar():
 
 # Mostra frame tabela
 def update():
+
+    label_nome_procurar = Label(frame_detalhes, text="Procurar Aluno [Inserir Nome]", height=1, anchor=NW, font=('Ivy 10'), bg=cor12, fg=cor21)
+    label_nome_procurar.place(x=10, y=30)
+    entry_nome_procurar = Entry(frame_detalhes, width=40, justify="center", relief="solid",font=('Ivy 10'))
+    entry_nome_procurar.place(x=10, y=60)
+
+    botao_procurar = Button(frame_detalhes, anchor="center", text="Procurar", width=9, overrelief="ridge", font=("Ivy 7 bold"), bg=cor11, fg=cor21)
+    botao_procurar.place(x=10, y=90)
+
     global frame_tabela_in
-    frame_tabela_in = Frame(frame_tabela, width=1440, height=298, bg=cor14)
+    frame_tabela_in = Frame(frame_tabela, width=1440, height=298, bg=cor18)
     frame_tabela_in.grid(row=0, column=0, pady=10, padx=10, sticky=NSEW)
     mostrar_tabela()
     print('Atualizar')
