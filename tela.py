@@ -2,6 +2,8 @@ from tkinter import *
 from tkinter import ttk
 from tkinter.ttk import Style
 from PIL import Image, ImageTk
+from tkcalendar import DateEntry, Calendar
+from datetime import date
 
 
 #Cores-------------------------------------------
@@ -26,7 +28,6 @@ cor18 = "#E0FFFF" #Light Cyan
 cor19 = "#40E0D0" #Turquesa
 cor20 = "#00BFFF" #DeepSkyBlue
 cor21 = "#36454F" #Carvão
-
 
 #Criando Janela -----------------------------------------------------------
 janela = Tk()
@@ -103,15 +104,28 @@ def mostrar_tabela():
 def cadastrar():
     print('membro')
 
-    #Campo de preencher
-    label_nome = Label(frame_detalhes, text="Nome do aluno", height=1, anchor=NW, font=('Ivy 10'), bg=cor20, fg=cor21)
+    #Campos de preencher
+    #Campo nome
+    label_nome = Label(frame_detalhes, text="Nome do aluno", height=1, anchor=NW, font=('Ivy 10'), bg=cor12, fg=cor21)
     label_nome.place(x=4, y=10)
-    entry_nome = Entry(frame_detalhes, width=35, justify='left', relief='solid')
+    entry_nome = Entry(frame_detalhes, width=70, justify='left', relief='solid')
     entry_nome.place(x=7, y=40)
+
+    #Campo telefone
+    label_telefone = Label(frame_detalhes, text="Telefone", height=1, anchor=NW, font=('Ivy 10'), bg=cor12, fg=cor21)
+    label_telefone.place(x=4, y=70)
+    entry_telefone = Entry(frame_detalhes, width=35, justify='left', relief='solid')
+    entry_telefone.place(x=7, y=100)
+
+    #Campo Data de Nascimento
+    label_data_nascimento = Label(frame_detalhes, text="Data de Nascimento", height=1,anchor=NW,font=('Ivy 10'), bg=cor12, fg=cor21)
+    label_data_nascimento.place(x=446, y=10)
+    entry_data_nascimento = DateEntry(frame_detalhes, width=18, bg=cor12, fg=cor21, borderwidth=2, year=2025)
+    entry_data_nascimento.place(x=450, y=40)
 
     # Botões
     botao_salvar = Button(frame_detalhes, anchor=CENTER, text='Salvar'.upper(), width=10, overrelief=RIDGE, font=('Ivy 7 bold'), bg=cor14, fg=cor21)
-    botao_salvar.place(x=107, y=160)
+    botao_salvar.place(x=357, y=10)
 
 # Mostra frame tabela
 def update():
