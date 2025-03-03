@@ -50,6 +50,13 @@ def read_membro():
         lista.append(linha)
     return lista
 
+#Atualizando Membros U
+def update_membro(values):
+    query = """"
+        UPDATE Membros Set nome = ?, telefone = ?, data_nascimento = ?, data_inscrição = ?, data_vencimento = ? WHERE prontuario = ?
+    """
+    cursor.execute(query, values)
+
 
 
 
