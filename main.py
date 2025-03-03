@@ -39,6 +39,16 @@ def inserir_membro(values):
     """
     cursor.execute(query, values)
 
+#Checando Membro R
+def read_membro():
+    lista = []
+    query = """
+        SELECT * FROM Membros
+    """
+    linhas = cursor.fetchall()
+    for linha in linhas:
+        lista.append(linha)
+    return lista
 
 
 
