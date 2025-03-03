@@ -45,6 +45,7 @@ def read_membro():
     query = """
         SELECT * FROM Membros
     """
+    cursor.execute(query)
     linhas = cursor.fetchall()
     for linha in linhas:
         lista.append(linha)
