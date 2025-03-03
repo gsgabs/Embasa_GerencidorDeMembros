@@ -57,6 +57,12 @@ def update_membro(values):
     """
     cursor.execute(query, values)
 
+#Apagando Membro D
+def delete_membro(valor):
+    query = "DELETE FROM Membros WHERE prontuario = ?"
+    cursor.execute(query, (valor,))
+
+
 
 
 
