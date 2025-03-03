@@ -58,6 +58,46 @@ frame_tabela = Frame(janela, width=1450, height=308, bg=cor12)
 frame_tabela.grid(row=5, column=0, pady=0, padx=10, sticky=NSEW)
 frame_tabela.grid_propagate(False)
 
+
+#Função de mostrar a tabela -----------------------------------------------------
+def mostrar_tabela():
+  tabela_nome = Label(frame_tabela_in, text="Tabela de Membros", height=1,pady=0, padx=0, relief="flat", anchor=NW, font=('Ivy 10 bold'), bg=cor1, fg=cor4)
+  tabela_nome.grid(row=0, column=0, padx=0, pady=10, sticky=NSEW)
+
+  #creating a treeview with dual scrollbars
+  list_header = ['Prontuário','Nome','Data de Nascimento','Vencimento']
+
+  df_list = []
+
+  global tree_membro
+
+  tree_membro = ttk.Treeview(frame_tabela_in, selectmode="extended",columns=list_header, show="headings")
+
+  #vertical scrollbar
+  vsb = ttk.Scrollbar(frame_tabela_in, orient="vertical", command=tree_membro.yview)
+  #horizontal scrollbar
+  hsb = ttk.Scrollbar(frame_tabela_in, orient="horizontal", command=tree_membro.xview)
+
+  tree_membro.configure(yscrollcommand=vsb.set, xscrollcommand=hsb.set)
+  tree_membro.grid(column=0, row=1, sticky='nsew')
+  vsb.grid(column=1, row=1, sticky='ns')
+  hsb.grid(column=0, row=2, sticky='ew')
+  frame_tabela_in.grid_rowconfigure(0, weight=12)
+
+  hd=["nw","nw","e","e"]
+  h=[80,500,100,80]
+  n=0
+
+  for col in list_header:
+   tree_membro.heading(col, text=col.title(), anchor=NW)
+   #adjust the column's width to the header string
+   tree_membro.column(col, width=h[n],anchor=hd[n])
+
+   n+=1
+
+  for item in df_list:
+   tree_membro.insert('', 'end', values=item)
+
 #Funções dos botões ------------------------------------------
 #Mostra frame de cadastro
 def cadastrar():
@@ -75,6 +115,7 @@ def cadastrar():
 
 # Mostra frame tabela
 def update():
+    global frame_tabela_in
     frame_tabela_in = Frame(frame_tabela, width=1440, height=298, bg=cor14)
     frame_tabela_in.grid(row=0, column=0, pady=10, padx=10, sticky=NSEW)
     mostrar_tabela()
@@ -83,47 +124,6 @@ def update():
 #Deleta algo
 def deletar():
     print('Excluído com sucesso')
-
-
-
-#Função de mostrar a tabela -----------------------------------------------------
-def mostrar_tabela():
-  app_nome = Label(frame_tabela_in, text="Tabela de Cursos", height=1,pady=0, padx=0, relief="flat", anchor=NW, font=('Ivy 10 bold'), bg=co1, fg=co4)
-  app_nome.grid(row=0, column=0, padx=0, pady=10, sticky=NSEW)
-
-  creating a treeview with dual scrollbars
-  list_header = ['ID','Curso','Duração','Preço']
-
-  df_list = []
-
-  global tree_curso
-
-  tree_curso = ttk.Treeview(frame_tabela_curso, selectmode="extended",columns=list_header, show="headings")
-
-  vertical scrollbar
-  vsb = ttk.Scrollbar(frame_tabela_curso, orient="vertical", command=tree_curso.yview)
-  horizontal scrollbar
-  hsb = ttk.Scrollbar(frame_tabela_curso, orient="horizontal", command=tree_curso.xview)
-
-  tree_curso.configure(yscrollcommand=vsb.set, xscrollcommand=hsb.set)
-  tree_curso.grid(column=0, row=1, sticky='nsew')
-  vsb.grid(column=1, row=1, sticky='ns')
-  hsb.grid(column=0, row=2, sticky='ew')
-  frame_tabela_curso.grid_rowconfigure(0, weight=12)
-
-  hd=["nw","nw","e","e"]
-  h=[30,150,80,60]
-  n=0
-
-  for col in list_header:
-   tree_curso.heading(col, text=col.title(), anchor=NW)
-   adjust the column's width to the header string
-   tree_curso.column(col, width=h[n],anchor=hd[n])
-
-   n+=1
-
-  for item in df_list:
-   tree_curso.insert('', 'end', values=item)
 
 
 #Controle--------------------------------------
