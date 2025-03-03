@@ -26,6 +26,28 @@ cursor.execute("""
     )
 """)
 
+tempo_de_vencimento = '+90 days'
+
+#CRUD Create Read Update Delete
+
+#Inserir Membro C
+def inserir_membro(values):
+    values.append(tempo_de_vencimento)
+    query = """
+        INSERT INTO Membros (nome, telefone, data_nascimento, data_inscricao, data_vencimento)
+        VALUES (?, ?, ?, DATE('now'), DATE('now', ?)) 
+    """
+    cursor.execute(query, values)
+
+
+
+
+
+
+
+
+
+
 
 
 
