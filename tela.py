@@ -4,6 +4,7 @@ from tkinter.ttk import Style
 from PIL import Image, ImageTk
 
 
+#Cores-------------------------------------------
 cor1 = "#E6E6FA"  #Lavanda
 cor2 = "#EE82EE"  #Violeta
 cor3 = "#4B0082"  #Indigo
@@ -57,8 +58,9 @@ frame_tabela = Frame(janela, width=1450, height=308, bg=cor12)
 frame_tabela.grid(row=5, column=0, pady=0, padx=10, sticky=NSEW)
 frame_tabela.grid_propagate(False)
 
-#Função para cadastrar alunos
-def membro():
+#Funções dos botões ------------------------------------------
+#Mostra frame de cadastro
+def cadastrar():
     print('membro')
 
     #Campo de preencher
@@ -67,13 +69,25 @@ def membro():
     entry_nome = Entry(frame_detalhes, width=35, justify='left', relief='solid')
     entry_nome.place(x=7, y=40)
 
-    #Botões
+    # Botões
     botao_salvar = Button(frame_detalhes, anchor=CENTER, text='Salvar'.upper(), width=10, overrelief=RIDGE, font=('Ivy 7 bold'), bg=cor14, fg=cor21)
     botao_salvar.place(x=107, y=160)
 
+# Mostra frame tabela
+def update():
+    frame_tabela_in = Frame(frame_tabela, width=1440, height=298, bg=cor14)
+    frame_tabela_in.grid(row=0, column=0, pady=10, padx=10, sticky=NSEW)
+    mostrar_tabela()
+    print('Atualizar')
 
-#Função tabela
-def mostrar_cursos():
+#Deleta algo
+def deletar():
+    print('Excluído com sucesso')
+
+
+
+#Função de mostrar a tabela -----------------------------------------------------
+def mostrar_tabela():
   app_nome = Label(frame_tabela_in, text="Tabela de Cursos", height=1,pady=0, padx=0, relief="flat", anchor=NW, font=('Ivy 10 bold'), bg=co1, fg=co4)
   app_nome.grid(row=0, column=0, padx=0, pady=10, sticky=NSEW)
 
@@ -112,16 +126,6 @@ def mostrar_cursos():
    tree_curso.insert('', 'end', values=item)
 
 
-#Mostra frame tabela
-def update():
-    frame_tabela_in = Frame(frame_tabela, width=1440, height=298, bg=cor14)
-    frame_tabela_in.grid(row=0, column=0, pady=10, padx=10, sticky=NSEW)
-    mostrar_cursos()
-    print('Atualizar')
-
-def deletar():
-    print('Excluído com sucesso')
-
 #Controle--------------------------------------
 
 def control(i):
@@ -131,7 +135,7 @@ def control(i):
 
         for widget in frame_tabela.winfo_children():
             widget.destroy()
-        membro()
+        cadastrar()
 
     elif i == 'atualizar':
         for widget in frame_detalhes.winfo_children():
@@ -140,7 +144,7 @@ def control(i):
         for widget in frame_tabela.winfo_children():
             widget.destroy()
         update()
-        
+
     elif i == 'deletar':
         for widget in frame_detalhes.winfo_children():
             widget.destroy()
@@ -150,13 +154,12 @@ def control(i):
         deletar()
 
 
-#Botões-------------------------------------
+#Botões no topo-------------------------------------
 #Botão Cadastrar Membro
 imagem_cadastro = Image.open('adicionar.png')
 imagem_cadastro = imagem_cadastro.resize((18,18))
 imagem_cadastro = ImageTk.PhotoImage(imagem_cadastro)
 botao_cadastro = Button(frame_dados, command=lambda:control('cadastro'), image = imagem_cadastro, text="Cadastro", width=100, compound=LEFT, overrelief=RIDGE, font=('Ivy 11'), bg=cor1, fg=cor21)
-# botao_cadastro.place(x=10, y=30)
 botao_cadastro.grid(row=1, column=0)
 
 #Botão Atualizar Membro
@@ -180,7 +183,6 @@ botao_deletar.grid(row=1, column=2)
 # ttk.Separator(janela, orient=HORIZONTAL).grid(row=3, columnspan=1,ipadx=1450)
 
 #Botões
-ttk.Label(frame_tabela, text="Hello World!").grid(row=1, column=1)
 ttk.Button(frame_logo, text="Quit", command=janela.destroy).grid(column=2, row=0)
 
 
