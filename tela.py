@@ -61,7 +61,62 @@ frame_tabela.grid_propagate(False)
 def membro():
     print('membro')
 
+    #Campo de preencher
+    label_nome = Label(frame_detalhes, text="Nome do aluno", height=1, anchor=NW, font=('Ivy 10'), bg=cor20, fg=cor21)
+    label_nome.place(x=4, y=10)
+    entry_nome = Entry(frame_detalhes, width=35, justify='left', relief='solid')
+    entry_nome.place(x=7, y=40)
+
+    #Botões
+    botao_salvar = Button(frame_detalhes, anchor=CENTER, text='Salvar'.upper(), width=10, overrelief=RIDGE, font=('Ivy 7 bold'), bg=cor14, fg=cor21)
+    botao_salvar.place(x=107, y=160)
+
+
+#Função tabela
+def mostrar_cursos():
+  app_nome = Label(frame_tabela_in, text="Tabela de Cursos", height=1,pady=0, padx=0, relief="flat", anchor=NW, font=('Ivy 10 bold'), bg=co1, fg=co4)
+  app_nome.grid(row=0, column=0, padx=0, pady=10, sticky=NSEW)
+
+  creating a treeview with dual scrollbars
+  list_header = ['ID','Curso','Duração','Preço']
+
+  df_list = []
+
+  global tree_curso
+
+  tree_curso = ttk.Treeview(frame_tabela_curso, selectmode="extended",columns=list_header, show="headings")
+
+  vertical scrollbar
+  vsb = ttk.Scrollbar(frame_tabela_curso, orient="vertical", command=tree_curso.yview)
+  horizontal scrollbar
+  hsb = ttk.Scrollbar(frame_tabela_curso, orient="horizontal", command=tree_curso.xview)
+
+  tree_curso.configure(yscrollcommand=vsb.set, xscrollcommand=hsb.set)
+  tree_curso.grid(column=0, row=1, sticky='nsew')
+  vsb.grid(column=1, row=1, sticky='ns')
+  hsb.grid(column=0, row=2, sticky='ew')
+  frame_tabela_curso.grid_rowconfigure(0, weight=12)
+
+  hd=["nw","nw","e","e"]
+  h=[30,150,80,60]
+  n=0
+
+  for col in list_header:
+   tree_curso.heading(col, text=col.title(), anchor=NW)
+   adjust the column's width to the header string
+   tree_curso.column(col, width=h[n],anchor=hd[n])
+
+   n+=1
+
+  for item in df_list:
+   tree_curso.insert('', 'end', values=item)
+
+
+#Mostra frame tabela
 def update():
+    frame_tabela_in = Frame(frame_tabela, width=1440, height=298, bg=cor14)
+    frame_tabela_in.grid(row=0, column=0, pady=10, padx=10, sticky=NSEW)
+    mostrar_cursos()
     print('Atualizar')
 
 def deletar():
@@ -76,23 +131,22 @@ def control(i):
 
         for widget in frame_tabela.winfo_children():
             widget.destroy()
-
         membro()
+
     elif i == 'atualizar':
         for widget in frame_detalhes.winfo_children():
             widget.destroy()
 
         for widget in frame_tabela.winfo_children():
             widget.destroy()
-
         update()
+        
     elif i == 'deletar':
         for widget in frame_detalhes.winfo_children():
             widget.destroy()
 
         for widget in frame_tabela.winfo_children():
             widget.destroy()
-
         deletar()
 
 
