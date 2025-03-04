@@ -1,9 +1,14 @@
 from tkinter import *
 from tkinter import ttk
+import tkinter
 from tkinter.ttk import Style
 from PIL import Image, ImageTk
 from tkcalendar import DateEntry, Calendar
+from tkinter import messagebox
 from datetime import date
+
+from main import inserir_membro
+
 # import filediolague
 
 
@@ -60,6 +65,30 @@ frame_tabela = Frame(janela, width=1450, height=308, bg=cor12)
 frame_tabela.grid(row=5, column=0, pady=0, padx=10, sticky=NSEW)
 frame_tabela.grid_propagate(False)
 
+#Variáveis Globais
+global entry_nome, entry_telefone, entry_data_nascimento
+
+#Função dos botões da tela cadastrar---------------------------------------------
+def salvar_membro():
+    nome_membro = entry_nome.get
+    telefone_membro = entry_telefone.get
+    data_nascimento_membro = entry_data_nascimento.get
+
+    lista = [nome_membro, telefone_membro, data_nascimento_membro]
+
+    for item in lista:
+        if item == '':
+            messagebox.showerror('Erro', 'preencha todos os campos')
+            return
+
+    #inserindo no banco
+    inserir_membro(lista)
+
+    messagebox.showinfo('Sucesso', 'Novo membro cadastrado com sucesso.')
+
+    entry_nome.delete(0,END)
+    entry_telefone.delete(0, END)
+    entry_data_nascimento(0, END)
 
 #Função de mostrar a tabela -----------------------------------------------------
 def mostrar_tabela():
@@ -100,7 +129,7 @@ def mostrar_tabela():
   for item in df_list:
    tree_membro.insert('', 'end', values=item)
 
-#Funções dos botões ------------------------------------------
+#Funções dos botões de cima ------------------------------------------
 #Mostra tela de cadastro
 def cadastrar():
     print('membro')

@@ -63,6 +63,13 @@ def delete_membro(valor):
     query = "DELETE FROM Membros WHERE prontuario = ?"
     cursor.execute(query, (valor,))
 
+#Conexão com frontend------------------------------------------------
+
+# def novo_membro():
+
+
+
+
 #Test Area ------------------------------------------------
 
 # Inserindo diretamente para teste
