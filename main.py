@@ -1,15 +1,17 @@
 import sqlite3
 
+from conexao import conn, cursor
+
 #Inicializando Banco----------------------------------------------------------
-try:
-    conn = sqlite3.connect("CadastroDB.db")
-    print("Conexão com o banco de dados realizada com sucesso.")
-except sqlite3.Error as erro:
-    print("Houve um erro ao se conectar com o banco de dados: ", erro)
-    exit()
+# try:
+#     conn = sqlite3.connect("CadastroDB.db")
+#     print("Conexão com o banco de dados realizada com sucesso.")
+# except sqlite3.Error as erro:
+#     print("Houve um erro ao se conectar com o banco de dados: ", erro)
+#     exit()
 
 #Criando Cursor
-cursor = conn.cursor()
+# cursor = conn.cursor()
 
 #Apagando tabela para testar
 cursor.execute("DROP TABLE IF EXISTS Membros")

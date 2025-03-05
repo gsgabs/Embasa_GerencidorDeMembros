@@ -70,16 +70,16 @@ global entry_nome, entry_telefone, entry_data_nascimento
 
 #Função dos botões da tela cadastrar---------------------------------------------
 def salvar_membro():
-    nome_membro = entry_nome.get
-    telefone_membro = entry_telefone.get
-    data_nascimento_membro = entry_data_nascimento.get
+    nome_membro = str(entry_nome.get())
+    telefone_membro = str(entry_telefone.get())
+    data_nascimento_membro = str(entry_data_nascimento.get())
 
     lista = [nome_membro, telefone_membro, data_nascimento_membro]
 
     for item in lista:
         if item == '':
             messagebox.showerror('Erro', 'preencha todos os campos')
-            return
+            break
 
     #inserindo no banco
     inserir_membro(lista)
@@ -89,6 +89,8 @@ def salvar_membro():
     entry_nome.delete(0,END)
     entry_telefone.delete(0, END)
     entry_data_nascimento(0, END)
+
+    mostrar_tabela()
 
 #Função de mostrar a tabela -----------------------------------------------------
 def mostrar_tabela():
@@ -134,6 +136,8 @@ def mostrar_tabela():
 def cadastrar():
     print('membro')
 
+    global entry_nome, entry_telefone, entry_data_nascimento
+
     #Campos de preencher
     #Campo nome
     label_nome = Label(frame_detalhes, text="Nome do aluno", height=1, anchor=NW, font=('Ivy 10'), bg=cor12, fg=cor21)
@@ -154,7 +158,7 @@ def cadastrar():
     entry_data_nascimento.place(x=450, y=40)
 
     # Botões
-    botao_salvar = Button(frame_detalhes, anchor=CENTER, text='Salvar'.upper(), width=10, overrelief=RIDGE, font=('Ivy 7 bold'), bg=cor14, fg=cor21)
+    botao_salvar = Button(frame_detalhes, command=lambda:salvar_membro(), anchor=CENTER, text='Salvar'.upper(), width=10, overrelief=RIDGE, font=('Ivy 7 bold'), bg=cor14, fg=cor21)
     botao_salvar.place(x=357, y=10)
 
 # Mostra frame tabela
