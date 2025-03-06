@@ -1,6 +1,7 @@
 import sqlite3
+import atexit
 
-from conexao import conn, cursor
+from conexao import conn, cursor, fechar_conexao
 
 #Inicializando Banco----------------------------------------------------------
 # try:
@@ -28,6 +29,8 @@ cursor.execute("""
     )
 """)
 
+conn.commit()
+
 tempo_de_vencimento = '+90 days'
 
 #CRUD Create Read Update Delete-----------------------------------------------
@@ -40,6 +43,7 @@ def inserir_membro(values):
         VALUES (?, ?, ?, DATE('now'), DATE('now', ?)) 
     """
     cursor.execute(query, values)
+    conn.commit()
 
 #Checando Membro R
 def read_membro():
@@ -59,11 +63,13 @@ def update_membro(values):
         UPDATE Membros Set nome = ?, telefone = ?, data_nascimento = ?, data_inscricao = ?, data_vencimento = ? WHERE prontuario = ?
     """
     cursor.execute(query, values)
+    conn.commit()
 
 #Apagando Membro D
 def delete_membro(valor):
     query = "DELETE FROM Membros WHERE prontuario = ?"
     cursor.execute(query, (valor,))
+    conn.commit()
 
 #Conexão com frontend------------------------------------------------
 
@@ -88,13 +94,15 @@ cursor.execute("""
 valores_inserir = ['Leonardo da Vinci', '40028922', '1401-01-01']
 inserir_membro(valores_inserir)
 
-valores_atualizar = ('Abraham Lincoln', '3321156', '1777-02-04', '2025-01-01', '2025-06-01', 4)
-update_membro(valores_atualizar)
+#valores_atualizar = ('Abraham Lincoln', '3321156', '1777-02-04', '2025-01-01', '2025-06-01', 4)
+#update_membro(valores_atualizar)
 
-delete_membro(3)
+#delete_membro(3)
 
 for item in read_membro():
     print(item)
+
+print(conn)
 
 #Finalizando --------------------------------------------------
 
@@ -102,7 +110,8 @@ for item in read_membro():
 conn.commit()
 
 # Fechando a conexão
-conn.close()
+atexit.register(fechar_conexao)
+
 
 
 

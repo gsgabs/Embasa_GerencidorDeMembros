@@ -8,3 +8,8 @@ except sqlite3.Error as erro:
     exit()
 
 cursor = conn.cursor()
+
+def fechar_conexao():
+    print("Fechando conexão com o banco de dados...")
+    conn.commit()
+    conn.close()
