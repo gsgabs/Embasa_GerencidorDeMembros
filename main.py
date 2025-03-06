@@ -42,8 +42,9 @@ def inserir_membro(values):
         INSERT INTO Membros (nome, telefone, data_nascimento, data_inscricao, data_vencimento)
         VALUES (?, ?, ?, DATE('now'), DATE('now', ?)) 
     """
-    cursor.execute(query, values)
-    conn.commit()
+    if values[0] != "" and values[1] != "":
+        cursor.execute(query, values)
+        conn.commit()
 
 #Checando Membro R
 def read_membro():

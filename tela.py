@@ -7,7 +7,7 @@ from tkcalendar import DateEntry, Calendar
 from tkinter import messagebox
 from datetime import date
 
-from main import inserir_membro
+from main import inserir_membro, read_membro
 
 # import filediolague
 
@@ -98,9 +98,9 @@ def mostrar_tabela():
   tabela_nome.grid(row=0, column=0, padx=0, pady=10, sticky=NSEW)
 
   #creating a treeview with dual scrollbars
-  list_header = ['Prontuário','Nome','Data de Nascimento','Vencimento']
+  list_header = ['Prontuário','Nome', 'Telefone','Data de Nascimento','Vencimento']
 
-  df_list = []
+  df_list = read_membro()
 
   global tree_membro
 
@@ -117,8 +117,8 @@ def mostrar_tabela():
   hsb.grid(column=0, row=2, sticky='ew')
   frame_tabela_in.grid_rowconfigure(0, weight=12)
 
-  hd=["nw","nw","e","e"]
-  h=[80,500,100,80]
+  hd=["nw","nw","e","e", "e"]
+  h=[80,500, 80,100,80]
   n=0
 
   for col in list_header:
