@@ -90,7 +90,7 @@ def salvar_membro():
     entry_telefone.delete(0, END)
     entry_data_nascimento(0, END)
 
-    mostrar_tabela()
+    # mostrar_tabela()
 
 #Função de mostrar a tabela -----------------------------------------------------
 def mostrar_tabela():

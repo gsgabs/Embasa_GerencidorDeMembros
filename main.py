@@ -15,7 +15,7 @@ from conexao import conn, cursor, fechar_conexao
 # cursor = conn.cursor()
 
 #Apagando tabela para testar
-cursor.execute("DROP TABLE IF EXISTS Membros")
+# cursor.execute("DROP TABLE IF EXISTS Membros")
 
 #Criando Tabela
 cursor.execute("""
@@ -81,23 +81,23 @@ def delete_membro(valor):
 #Test Area ------------------------------------------------
 
 # Inserindo diretamente para teste
-cursor.execute("""
-    INSERT INTO Membros (nome, telefone, data_nascimento, data_inscricao, data_vencimento)
-    VALUES
-    ('Joana D Arc', '11987654321', '1412-01-06', DATE('now'), DATE('now', ?)),
-    ('Cristovão Colombo', '21987654321', '1451-10-31', DATE('now'), DATE('now', ?)),
-    ('Ezio Auditore', '31987654321', '1459-06-24', DATE('now'), DATE('now', ?))
-""", (tempo_de_vencimento, tempo_de_vencimento, tempo_de_vencimento))
+# cursor.execute("""
+#     INSERT INTO Membros (nome, telefone, data_nascimento, data_inscricao, data_vencimento)
+#     VALUES
+#     ('Joana D Arc', '11987654321', '1412-01-06', DATE('now'), DATE('now', ?)),
+#     ('Cristovão Colombo', '21987654321', '1451-10-31', DATE('now'), DATE('now', ?)),
+#     ('Ezio Auditore', '31987654321', '1459-06-24', DATE('now'), DATE('now', ?))
+# """, (tempo_de_vencimento, tempo_de_vencimento, tempo_de_vencimento))
 
 
 # Exemplo de uso da função inserir_membro
-valores_inserir = ['Leonardo da Vinci', '40028922', '1401-01-01']
-inserir_membro(valores_inserir)
+# valores_inserir = ['Leonardo da Vinci', '40028922', '1401-01-01']
+# inserir_membro(valores_inserir)
 
 #valores_atualizar = ('Abraham Lincoln', '3321156', '1777-02-04', '2025-01-01', '2025-06-01', 4)
 #update_membro(valores_atualizar)
 
-#delete_membro(3)
+# delete_membro(4)
 
 for item in read_membro():
     print(item)
