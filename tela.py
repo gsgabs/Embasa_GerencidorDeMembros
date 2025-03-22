@@ -41,28 +41,32 @@ janela.title("Tela-01")
 janela.geometry('1450x720')
 janela.configure(background=cor20)
 
-Estilo = Style(janela)
-Estilo.theme_use("clam")
+# Estilo = Style(janela)
+# Estilo.theme_use("clam")
 
-#Criando Frames------------------------------------------------------------------------
-#Frame Logo
+# Configuração das colunas da janela
+janela.grid_columnconfigure(0, weight=1)  # Coluna 0 (frame_detalhes)
+janela.grid_columnconfigure(1, weight=1)  # Coluna 1 (frame_tabela)
+
+# Criando Frames ------------------------------------------------------------------------
+# Frame Logo
 frame_logo = Frame(janela, width=1450, height=52, bg=cor18)
-frame_logo.grid(row=0, column=0, pady=0, padx=0, sticky=NSEW)
+frame_logo.grid(row=0, column=0, columnspan=2, pady=0, padx=0, sticky=NSEW)  # Ocupa duas colunas
 frame_logo.grid_propagate(False)
 
-#Frame Dados
+# Frame Dados
 frame_dados = Frame(janela, width=1450, height=60, bg=cor10)
-frame_dados.grid(row=2, column=0, padx=0, sticky=NSEW)
+frame_dados.grid(row=1, column=0, columnspan=2, padx=0, sticky=NSEW)  # Ocupa duas colunas
 frame_dados.grid_propagate(False)
 
-#Frame Detalhes
-frame_detalhes = Frame(janela, width=1450, height=300, bg=cor16)
-frame_detalhes.grid(row=4, column=0, padx=10, sticky=NSEW)
+# Frame Detalhes
+frame_detalhes = Frame(janela, width=650, height=608, bg=cor16)
+frame_detalhes.grid(row=2, column=0, padx=10, pady=10, sticky=NSEW)
 frame_detalhes.grid_propagate(False)
 
-#Frame Tabela
-frame_tabela = Frame(janela, width=1450, height=308, bg=cor12)
-frame_tabela.grid(row=5, column=0, pady=0, padx=10, sticky=NSEW)
+# Frame Tabela
+frame_tabela = Frame(janela, width=800, height=608, bg=cor12)
+frame_tabela.grid(row=2, column=1, pady=10, padx=10, sticky=NSEW)
 frame_tabela.grid_propagate(False)
 
 #Variáveis Globais
@@ -92,6 +96,45 @@ def salvar_membro():
 
     # mostrar_tabela()
 
+#Atualizar membro
+def update_membro():
+
+    try:
+        tree_itens = tree_membro.focus()
+        tree_dictionary = tree_membro.item(tree_itens)
+        tree_lista = tree_dictionary['values']
+
+        valor_id = tree_lista[0]
+
+        entry_nome.insert(0, tree_lista[1])
+        entry_telefone.insert(0, tree_lista[2])
+        entry_data_nascimento.insert(0, tree_lista[3])
+
+        def update():
+            nome_membro = str(entry_nome.get())
+            telefone_membro = str(entry_telefone.get())
+            data_nascimento_membro = str(entry_data_nascimento.get())
+
+            lista = [nome_membro, telefone_membro, data_nascimento_membro, valor_id]
+
+            for item in lista:
+                if item == '':
+                    messagebox.showerror('Erro', 'preencha todos os campos')
+                    break
+
+            # atualizando no banco
+            update_membro(lista)
+
+            messagebox.showinfo('Sucesso', 'Novo membro cadastrado com sucesso.')
+
+            entry_nome.delete(0, END)
+            entry_telefone.delete(0, END)
+            entry_data_nascimento(0, END)
+
+            # mostrar_tabela()
+    except:
+        print("Hello Morning")
+
 #Função de mostrar a tabela -----------------------------------------------------
 def mostrar_tabela():
   tabela_nome = Label(frame_tabela_in, text="Tabela de Membros", height=1,pady=0, padx=0, relief="flat", anchor=NW, font=('Ivy 10 bold'), bg=cor1, fg=cor4)
@@ -118,12 +161,11 @@ def mostrar_tabela():
   frame_tabela_in.grid_rowconfigure(0, weight=12)
 
   hd=["nw","nw","e","e", "e"]
-  h=[80,500, 80,100,80]
+  h=[80,420, 80,90,80]
   n=0
 
   for col in list_header:
    tree_membro.heading(col, text=col.title(), anchor=NW)
-   #adjust the column's width to the header string
    tree_membro.column(col, width=h[n],anchor=hd[n])
 
    n+=1
@@ -173,7 +215,7 @@ def update():
     botao_procurar.place(x=10, y=90)
 
     global frame_tabela_in
-    frame_tabela_in = Frame(frame_tabela, width=1440, height=298, bg=cor18)
+    frame_tabela_in = Frame(frame_tabela, width=800, height=603, bg=cor18)
     frame_tabela_in.grid(row=0, column=0, pady=10, padx=10, sticky=NSEW)
     mostrar_tabela()
     print('Atualizar')
