@@ -83,7 +83,7 @@ def salvar_membro():
     for item in lista:
         if item == '':
             messagebox.showerror('Erro', 'preencha todos os campos')
-            break
+            return
 
     #inserindo no banco
     inserir_membro(lista)
@@ -228,58 +228,67 @@ def deletar():
 #Controle--------------------------------------
 
 def control(i):
+    for widget in frame_detalhes.winfo_children():
+        widget.destroy()
+
+    for widget in frame_tabela.winfo_children():
+        widget.destroy()
     if i == 'cadastro':
-        for widget in frame_detalhes.winfo_children():
-            widget.destroy()
-
-        for widget in frame_tabela.winfo_children():
-            widget.destroy()
         cadastrar()
-
     elif i == 'atualizar':
-        for widget in frame_detalhes.winfo_children():
-            widget.destroy()
-
-        for widget in frame_tabela.winfo_children():
-            widget.destroy()
         update()
-
     elif i == 'deletar':
-        for widget in frame_detalhes.winfo_children():
-            widget.destroy()
-
-        for widget in frame_tabela.winfo_children():
-            widget.destroy()
         deletar()
 
+    #
+    # if i == 'cadastro':
+    #     for widget in frame_detalhes.winfo_children():
+    #         widget.destroy()
+    #
+    #     for widget in frame_tabela.winfo_children():
+    #         widget.destroy()
+    #     cadastrar()
+    #
+    # elif i == 'atualizar':
+    #     for widget in frame_detalhes.winfo_children():
+    #         widget.destroy()
+    #
+    #     for widget in frame_tabela.winfo_children():
+    #         widget.destroy()
+    #     update()
+    #
+    # elif i == 'deletar':
+    #     for widget in frame_detalhes.winfo_children():
+    #         widget.destroy()
+    #
+    #     for widget in frame_tabela.winfo_children():
+    #         widget.destroy()
+    #     deletar()
 
 #Botões no topo-------------------------------------
 #Botão Cadastrar Membro
 imagem_cadastro = Image.open('Assets/adicionar.png')
 imagem_cadastro = imagem_cadastro.resize((18,18))
 imagem_cadastro = ImageTk.PhotoImage(imagem_cadastro)
-botao_cadastro = Button(frame_dados, command=lambda:control('cadastro'), image = imagem_cadastro, text="Cadastro", width=100, compound=LEFT, overrelief=RIDGE, font=('Ivy 11'), bg=cor1, fg=cor21)
+botao_cadastro = Button(frame_dados, command=lambda:control('cadastro'), image = imagem_cadastro, text="Cadastrar", width=100, compound=LEFT, overrelief=RIDGE, font=('Ivy 11'), bg=cor1, fg=cor21)
 botao_cadastro.grid(row=1, column=0)
 
 #Botão Atualizar Membro
 imagem_atualizar = Image.open('Assets/atualizar.png')
 imagem_atualizar = imagem_atualizar.resize((18,18))
 imagem_atualizar = ImageTk.PhotoImage(imagem_atualizar)
-botao_atualizar = Button(frame_dados, command=lambda:control('atualizar'), image = imagem_atualizar, text="Atualizar User", width=100, compound=LEFT, overrelief=RIDGE, font=('Ivy 11'), bg=cor1, fg=cor21)
+botao_atualizar = Button(frame_dados, command=lambda:control('atualizar'), image = imagem_atualizar, text="Atualizar", width=100, compound=LEFT, overrelief=RIDGE, font=('Ivy 11'), bg=cor1, fg=cor21)
 botao_atualizar.grid(row=1, column=1)
 
 #Botão Deletar Membro
 imagem_excluir = Image.open('Assets/excluir.png')
 imagem_excluir = imagem_excluir.resize((18,18))
 imagem_excluir = ImageTk.PhotoImage(imagem_excluir)
-botao_deletar = Button(frame_dados, command=lambda:control('deletar'), image = imagem_excluir, text="Deletar User", width=100, compound=LEFT, overrelief=RIDGE, font=('Ivy 11'), bg=cor1, fg=cor21)
+botao_deletar = Button(frame_dados, command=lambda:control('deletar'), image = imagem_excluir, text="Deletar", width=100, compound=LEFT, overrelief=RIDGE, font=('Ivy 11'), bg=cor1, fg=cor21)
 botao_deletar.grid(row=1, column=2)
 
 # Test --------------------------------------
 
-#Linha
-# ttk.Separator(janela, orient=HORIZONTAL).grid(row=1, columnspan=1,ipadx=1450)
-# ttk.Separator(janela, orient=HORIZONTAL).grid(row=3, columnspan=1,ipadx=1450)
 
 #Botões
 ttk.Button(frame_logo, text="Quit", command=janela.destroy).grid(column=2, row=0)
