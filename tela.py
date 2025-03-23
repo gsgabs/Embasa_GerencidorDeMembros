@@ -140,44 +140,44 @@ def update_membro():
 
 #Função de mostrar a tabela -----------------------------------------------------
 def mostrar_tabela():
-  global frame_tabela_in
-  frame_tabela_in = Frame(frame_tabela, width=800, height=603, bg=cor18)
-  frame_tabela_in.grid(row=0, column=0, pady=10, padx=10, sticky=NSEW)
-  tabela_nome = Label(frame_tabela_in, text="Tabela de Membros", height=1,pady=0, padx=0, relief="flat", anchor=NW, font=('Ivy 10 bold'), bg=cor1, fg=cor4)
-  tabela_nome.grid(row=0, column=0, padx=0, pady=10, sticky=NSEW)
+    global frame_tabela_in
+    frame_tabela_in = Frame(frame_tabela, width=800, height=603, bg=cor18)
+    frame_tabela_in.grid(row=0, column=0, pady=10, padx=10, sticky=NSEW)
+    tabela_nome = Label(frame_tabela_in, text="Tabela de Membros", height=1,pady=0, padx=0, relief="flat", anchor=NW, font=('Ivy 10 bold'), bg=cor1, fg=cor4)
+    tabela_nome.grid(row=0, column=0, padx=0, pady=10, sticky=NSEW)
 
-  #creating a treeview with dual scrollbars
-  list_header = ['Prontuário','Nome', 'Telefone','Data de Nascimento','Vencimento']
+    #creating a treeview with dual scrollbars
+    list_header = ['Prontuário','Nome', 'Telefone','Data de Nascimento','Vencimento']
 
-  df_list = read_membro()
+    df_list = read_membro()
 
-  global tree_membro
+    global tree_membro
 
-  tree_membro = ttk.Treeview(frame_tabela_in, selectmode="extended",columns=list_header, show="headings")
+    tree_membro = ttk.Treeview(frame_tabela_in, selectmode="extended",columns=list_header, show="headings")
 
-  #vertical scrollbar
-  vsb = ttk.Scrollbar(frame_tabela_in, orient="vertical", command=tree_membro.yview)
-  #horizontal scrollbar
-  hsb = ttk.Scrollbar(frame_tabela_in, orient="horizontal", command=tree_membro.xview)
+    #vertical scrollbar
+    vsb = ttk.Scrollbar(frame_tabela_in, orient="vertical", command=tree_membro.yview)
+    #horizontal scrollbar
+    hsb = ttk.Scrollbar(frame_tabela_in, orient="horizontal", command=tree_membro.xview)
 
-  tree_membro.configure(yscrollcommand=vsb.set, xscrollcommand=hsb.set)
-  tree_membro.grid(column=0, row=1, sticky='nsew')
-  vsb.grid(column=1, row=1, sticky='ns')
-  hsb.grid(column=0, row=2, sticky='ew')
-  frame_tabela_in.grid_rowconfigure(0, weight=12)
+    tree_membro.configure(yscrollcommand=vsb.set, xscrollcommand=hsb.set)
+    tree_membro.grid(column=0, row=1, sticky='nsew')
+    vsb.grid(column=1, row=1, sticky='ns')
+    hsb.grid(column=0, row=2, sticky='ew')
+    frame_tabela_in.grid_rowconfigure(0, weight=12)
 
-  hd=["nw","nw","e","e", "e"]
-  h=[80,420, 80,90,80]
-  n=0
+    hd=["nw","nw","e","e", "e"]
+    h=[80,420, 80,90,80]
+    n=0
 
-  for col in list_header:
-   tree_membro.heading(col, text=col.title(), anchor=NW)
-   tree_membro.column(col, width=h[n],anchor=hd[n])
+    for col in list_header:
+     tree_membro.heading(col, text=col.title(), anchor=NW)
+     tree_membro.column(col, width=h[n],anchor=hd[n])
 
-   n+=1
+     n+=1
 
-  for item in df_list:
-   tree_membro.insert('', 'end', values=item)
+    for item in df_list:
+     tree_membro.insert('', 'end', values=item)
 
 
 #Funções dos botões de cima ------------------------------------------------------------------------------------------
