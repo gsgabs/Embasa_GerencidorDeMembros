@@ -69,6 +69,9 @@ frame_tabela = Frame(janela, width=800, height=608, bg=cor12)
 frame_tabela.grid(row=2, column=1, pady=10, padx=10, sticky=NSEW)
 frame_tabela.grid_propagate(False)
 
+# frame_tabela_in = Frame(frame_tabela, width=800, height=603, bg=cor18)
+# frame_tabela_in.grid(row=0, column=0, pady=10, padx=10, sticky=NSEW)
+
 #Variáveis Globais
 global entry_nome, entry_telefone, entry_data_nascimento
 
@@ -90,11 +93,11 @@ def salvar_membro():
 
     messagebox.showinfo('Sucesso', 'Novo membro cadastrado com sucesso.')
 
-    entry_nome.delete(0,END)
-    entry_telefone.delete(0, END)
-    entry_data_nascimento(0, END)
+    # entry_nome.delete(0,END)
+    # entry_telefone.delete(0, END)
+    # entry_data_nascimento(0, END)
 
-    # mostrar_tabela()
+    mostrar_tabela()
 
 #Atualizar membro
 def update_membro():
@@ -137,6 +140,9 @@ def update_membro():
 
 #Função de mostrar a tabela -----------------------------------------------------
 def mostrar_tabela():
+  global frame_tabela_in
+  frame_tabela_in = Frame(frame_tabela, width=800, height=603, bg=cor18)
+  frame_tabela_in.grid(row=0, column=0, pady=10, padx=10, sticky=NSEW)
   tabela_nome = Label(frame_tabela_in, text="Tabela de Membros", height=1,pady=0, padx=0, relief="flat", anchor=NW, font=('Ivy 10 bold'), bg=cor1, fg=cor4)
   tabela_nome.grid(row=0, column=0, padx=0, pady=10, sticky=NSEW)
 
@@ -173,10 +179,10 @@ def mostrar_tabela():
   for item in df_list:
    tree_membro.insert('', 'end', values=item)
 
-#Funções dos botões de cima ------------------------------------------
+
+#Funções dos botões de cima ------------------------------------------------------------------------------------------
 #Mostra tela de cadastro
 def cadastrar():
-    print('membro')
 
     global entry_nome, entry_telefone, entry_data_nascimento
 
@@ -214,9 +220,9 @@ def update():
     botao_procurar = Button(frame_detalhes, anchor="center", text="Procurar", width=9, overrelief="ridge", font=("Ivy 7 bold"), bg=cor11, fg=cor21)
     botao_procurar.place(x=10, y=90)
 
-    global frame_tabela_in
-    frame_tabela_in = Frame(frame_tabela, width=800, height=603, bg=cor18)
-    frame_tabela_in.grid(row=0, column=0, pady=10, padx=10, sticky=NSEW)
+    # global frame_tabela_in
+    # frame_tabela_in = Frame(frame_tabela, width=800, height=603, bg=cor18)
+    # frame_tabela_in.grid(row=0, column=0, pady=10, padx=10, sticky=NSEW)
     mostrar_tabela()
     print('Atualizar')
 
