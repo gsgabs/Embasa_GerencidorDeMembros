@@ -123,18 +123,16 @@ def update_membro():
             for item in lista:
                 if item == '':
                     messagebox.showerror('Erro', 'preencha todos os campos')
-                    break
+                    return
 
             # atualizando no banco
             update_membro(lista)
 
             messagebox.showinfo('Sucesso', 'Novo membro cadastrado com sucesso.')
 
-            entry_nome.delete(0, END)
-            entry_telefone.delete(0, END)
-            entry_data_nascimento(0, END)
 
-            # mostrar_tabela()
+            mostrar_tabela()
+        # botao_salvar_atualizacao
     except:
         print("Hello Morning")
 
@@ -180,10 +178,8 @@ def mostrar_tabela():
      tree_membro.insert('', 'end', values=item)
 
 
-#Funções dos botões de cima ------------------------------------------------------------------------------------------
-#Mostra tela de cadastro
-def cadastrar():
-
+#Função gerar entries
+def carregar_entries():
     global entry_nome, entry_telefone, entry_data_nascimento
 
     #Campos de preencher
@@ -205,6 +201,13 @@ def cadastrar():
     entry_data_nascimento = DateEntry(frame_detalhes, width=18, bg=cor12, fg=cor21, borderwidth=2, year=2025)
     entry_data_nascimento.place(x=450, y=40)
 
+
+#Funções dos botões de cima ------------------------------------------------------------------------------------------
+#Mostra tela de cadastro
+def cadastrar():
+
+    carregar_entries()
+
     # Botões
     botao_salvar = Button(frame_detalhes, command=lambda:salvar_membro(), anchor=CENTER, text='Salvar'.upper(), width=10, overrelief=RIDGE, font=('Ivy 7 bold'), bg=cor14, fg=cor21)
     botao_salvar.place(x=357, y=10)
@@ -212,13 +215,17 @@ def cadastrar():
 # Mostra frame tabela
 def update():
 
+    carregar_entries()
+
+    #Linha divisoria aqui
+
     label_nome_procurar = Label(frame_detalhes, text="Procurar Aluno [Inserir Nome]", height=1, anchor=NW, font=('Ivy 10'), bg=cor12, fg=cor21)
-    label_nome_procurar.place(x=10, y=30)
+    label_nome_procurar.place(x=10, y=160)
     entry_nome_procurar = Entry(frame_detalhes, width=40, justify="center", relief="solid",font=('Ivy 10'))
-    entry_nome_procurar.place(x=10, y=60)
+    entry_nome_procurar.place(x=10, y=190)
 
     botao_procurar = Button(frame_detalhes, anchor="center", text="Procurar", width=9, overrelief="ridge", font=("Ivy 7 bold"), bg=cor11, fg=cor21)
-    botao_procurar.place(x=10, y=90)
+    botao_procurar.place(x=10, y=220)
 
     # global frame_tabela_in
     # frame_tabela_in = Frame(frame_tabela, width=800, height=603, bg=cor18)
