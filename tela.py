@@ -73,7 +73,7 @@ frame_tabela.grid_propagate(False)
 # frame_tabela_in.grid(row=0, column=0, pady=10, padx=10, sticky=NSEW)
 
 #Variáveis Globais
-global entry_nome, entry_telefone, entry_data_nascimento
+global entry_nome, entry_nome_responsavel, entry_telefone, entry_telefone_dois, entry_data_nascimento, entry_data_inscricao, entry_data_vencimento
 
 #Função dos botões da tela cadastrar---------------------------------------------
 def salvar_membro():
@@ -93,9 +93,9 @@ def salvar_membro():
 
     messagebox.showinfo('Sucesso', 'Novo membro cadastrado com sucesso.')
 
-    # entry_nome.delete(0,END)
-    # entry_telefone.delete(0, END)
-    # entry_data_nascimento(0, END)
+    entry_nome.delete(0,END)
+    entry_telefone.delete(0, END)
+    entry_data_nascimento(0, END)
 
     mostrar_tabela()
 
@@ -105,10 +105,14 @@ def update_membro():
     #Função para salvar no banco
     def salvar_update():
         nome_membro = str(entry_nome.get())
+        nome_responsavel = str(entry_nome_responsavel.get)
         telefone_membro = str(entry_telefone.get())
+        telefone_dois = str(entry_telefone_dois)
         data_nascimento_membro = str(entry_data_nascimento.get())
+        data_inscricao_membro = str(entry_data_inscricao)
+        data_vencimento_membro = str(entry_data_vencimento)
 
-        lista = [nome_membro, telefone_membro, data_nascimento_membro, valor_id]
+        lista = [nome_membro, nome_responsavel, telefone_membro, telefone_dois, data_nascimento_membro, data_inscricao_membro, data_vencimento_membro, valor_id]
 
         for item in lista:
             if item == '':
@@ -122,10 +126,22 @@ def update_membro():
 
         mostrar_tabela()
 
+        entry_nome.delete(0, END)
+        entry_telefone.delete(0, END)
+        entry_data_nascimento(0, END)
+
         botao_salvar_atualizacao.destroy()
 
     #Carregar dados nas entries
     try:
+
+        # Limpar entries
+        # limpar_entries()
+        # Resetando os DateEntry
+        entry_data_nascimento.set_date(None)
+        entry_data_inscricao.set_date(None)
+        entry_data_vencimento.set_date(None)
+
         tree_itens = tree_membro.focus()
         tree_dictionary = tree_membro.item(tree_itens)
         tree_lista = tree_dictionary['values']
@@ -133,13 +149,17 @@ def update_membro():
         valor_id = tree_lista[0]
 
         entry_nome.insert(0, tree_lista[1])
-        entry_telefone.insert(0, tree_lista[2])
-        entry_data_nascimento.insert(0, tree_lista[3])
+        entry_nome_responsavel.insert(0, tree_lista[2])
+        entry_telefone.insert(0, tree_lista[3])
+        entry_telefone_dois.insert(0, tree_lista[4])
+        entry_data_nascimento.insert(0, tree_lista[5])
+        entry_data_inscricao.insert(0, tree_lista[6])
+        entry_data_vencimento.insert(0, tree_lista[7])
 
 
         # botao_salvar_atualizacao
         botao_salvar_atualizacao = Button(frame_detalhes, command=lambda: salvar_update(), anchor=CENTER, text='Salvar Atualização'.upper(),width=20, overrelief=RIDGE, font=('Ivy 7 bold'), bg=cor19, fg=cor21)
-        botao_salvar_atualizacao.place(x=450, y=100)
+        botao_salvar_atualizacao.place(x=450, y=250)
 
     except:
         print("Hello Morning")
@@ -153,7 +173,7 @@ def mostrar_tabela():
     tabela_nome.grid(row=0, column=0, padx=0, pady=10, sticky=NSEW)
 
     #creating a treeview with dual scrollbars
-    list_header = ['Prontuário','Nome', 'Telefone','Data de Nascimento','Vencimento']
+    list_header = ['Prontuário','Nome','Nome do Responsavel','Telefone','Segundo Telefone','Nascimento','Incrição','Vencimento']
 
     df_list = read_membro()
 
@@ -172,8 +192,8 @@ def mostrar_tabela():
     hsb.grid(column=0, row=2, sticky='ew')
     frame_tabela_in.grid_rowconfigure(0, weight=12)
 
-    hd=["nw","nw","e","e", "e"]
-    h=[80,420, 80,90,80]
+    hd=["nw","nw","e","nw", "e","e","nw","e"]
+    h=[80,150, 150, 80,50,80,80,80]
     n=0
 
     for col in list_header:
@@ -188,20 +208,32 @@ def mostrar_tabela():
 
 #Função gerar entries
 def carregar_entries():
-    global entry_nome, entry_telefone, entry_data_nascimento
+    global entry_nome, entry_nome_responsavel, entry_telefone, entry_telefone_dois, entry_data_nascimento, entry_data_inscricao, entry_data_vencimento
 
     #Campos de preencher
     #Campo nome
-    label_nome = Label(frame_detalhes, text="Nome do aluno", height=1, anchor=NW, font=('Ivy 10'), bg=cor12, fg=cor21)
+    label_nome = Label(frame_detalhes, text="Nome do membro", height=1, anchor=NW, font=('Ivy 10'), bg=cor12, fg=cor21)
     label_nome.place(x=4, y=10)
     entry_nome = Entry(frame_detalhes, width=70, justify='left', relief='solid')
     entry_nome.place(x=7, y=40)
 
-    #Campo telefone
-    label_telefone = Label(frame_detalhes, text="Telefone", height=1, anchor=NW, font=('Ivy 10'), bg=cor12, fg=cor21)
-    label_telefone.place(x=4, y=70)
-    entry_telefone = Entry(frame_detalhes, width=35, justify='left', relief='solid')
-    entry_telefone.place(x=7, y=100)
+    # Campo nome responsável
+    label_nome_responsavel = Label(frame_detalhes, text="Nome do Responsável", height=1, anchor=NW, font=('Ivy 10'), bg=cor12, fg=cor21)
+    label_nome_responsavel.place(x=4, y=70)
+    entry_nome_responsavel = Entry(frame_detalhes, width=70, justify='left', relief='solid')
+    entry_nome_responsavel.place(x=7, y=100)
+
+    #Campo telefone 1
+    label_telefone = Label(frame_detalhes, text="Telefone 1", height=1, anchor=NW, font=('Ivy 10'), bg=cor12, fg=cor21)
+    label_telefone.place(x=4, y=130)
+    entry_telefone = Entry(frame_detalhes, width=25, justify='left', relief='solid')
+    entry_telefone.place(x=7, y=160)
+
+    # Campo telefone 2
+    label_telefone_dois = Label(frame_detalhes, text="Telefone 2", height=1, anchor=NW, font=('Ivy 10'), bg=cor12, fg=cor21)
+    label_telefone_dois.place(x=204, y=130)
+    entry_telefone_dois = Entry(frame_detalhes, width=25, justify='left', relief='solid')
+    entry_telefone_dois.place(x=207, y=160)
 
     #Campo Data de Nascimento
     label_data_nascimento = Label(frame_detalhes, text="Data de Nascimento", height=1,anchor=NW,font=('Ivy 10'), bg=cor12, fg=cor21)
@@ -209,9 +241,34 @@ def carregar_entries():
     entry_data_nascimento = DateEntry(frame_detalhes, width=18, bg=cor12, fg=cor21, borderwidth=2, year=2025)
     entry_data_nascimento.place(x=450, y=40)
 
+    # Campo Data de Incrição
+    label_data_inscricao = Label(frame_detalhes, text="Data da Inscrição", height=1, anchor=NW, font=('Ivy 10'), bg=cor12, fg=cor21)
+    label_data_inscricao.place(x=446, y=70)
+    entry_data_inscricao = DateEntry(frame_detalhes, width=18, bg=cor12, fg=cor21, borderwidth=2, year=2025)
+    entry_data_inscricao.place(x=450, y=100)
+
+    # Campo Data de Vencimento
+    label_data_vencimento = Label(frame_detalhes, text="Data da Vencimento", height=1, anchor=NW, font=('Ivy 10'), bg=cor12, fg=cor21)
+    label_data_vencimento.place(x=446, y=130)
+    entry_data_vencimento = DateEntry(frame_detalhes, width=18, bg=cor12, fg=cor21, borderwidth=2, year=2025)
+    entry_data_vencimento.place(x=450, y=160)
+
     # Botões
     botao_salvar = Button(frame_detalhes, command=lambda: salvar_membro(), anchor=CENTER, text='Salvar'.upper(),width=10, overrelief=RIDGE, font=('Ivy 7 bold'), bg=cor14, fg=cor21)
     botao_salvar.place(x=357, y=10)
+
+
+
+#Função Limpar entries
+def limpar_entries():
+    entry_nome.delete(0, END)
+    entry_nome_responsavel.delete(0, END)
+    entry_telefone.delete(0, END)
+    entry_telefone_dois.delete(0,END)
+    # Resetando os DateEntry
+    entry_data_nascimento.set_date(None)
+    entry_data_inscricao.set_date(None)
+    entry_data_vencimento.set_date(None)
 
 
 #Funções dos botões de cima ------------------------------------------------------------------------------------------
@@ -231,7 +288,7 @@ def update():
     botao_carregar.place(x=280, y=10)
 
     #Botão deletar
-    botao_deletar = Button(frame_detalhes, command=lambda: update_membro(), anchor=CENTER, text='Deletar'.upper(),width=10, overrelief=RIDGE, font=('Ivy 7 bold'), bg=cor6, fg=cor21)
+    botao_deletar = Button(frame_detalhes, command=lambda: limpar_entries(), anchor=CENTER, text='Deletar'.upper(),width=10, overrelief=RIDGE, font=('Ivy 7 bold'), bg=cor6, fg=cor21)
     botao_deletar.place(x=202, y=10)
 
 
@@ -240,12 +297,12 @@ def update():
 
     #Pesquisa
     label_nome_procurar = Label(frame_detalhes, text="Procurar Aluno [Inserir Nome]", height=1, anchor=NW, font=('Ivy 10'), bg=cor12, fg=cor21)
-    label_nome_procurar.place(x=10, y=160)
+    label_nome_procurar.place(x=10, y=220)
     entry_nome_procurar = Entry(frame_detalhes, width=40, justify="center", relief="solid",font=('Ivy 10'))
-    entry_nome_procurar.place(x=10, y=190)
+    entry_nome_procurar.place(x=10, y=250)
 
     botao_procurar = Button(frame_detalhes, anchor="center", text="Procurar", width=9, overrelief="ridge", font=("Ivy 7 bold"), bg=cor11, fg=cor21)
-    botao_procurar.place(x=10, y=220)
+    botao_procurar.place(x=10, y=280)
 
 
     #Tabela no frame da direita

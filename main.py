@@ -8,7 +8,9 @@ cursor.execute("""
     CREATE TABLE IF NOT EXISTS Membros (
     prontuario INTEGER PRIMARY KEY,
     nome TEXT NOT NULL,
+    nome_responsavel TEXT,
     telefone TEXT,
+    telefone2 TEXT,
     data_nascimento DATE NOT NULL,
     data_inscricao DATE NOT NULL,
     data_vencimento DATE NOT NULL
@@ -47,7 +49,7 @@ def read_membro():
 #Atualizando Membros U
 def update_membro(values):
     query = """
-        UPDATE Membros Set nome = ?, telefone = ?, data_nascimento = ?, data_inscricao = ?, data_vencimento = ? WHERE prontuario = ?
+        UPDATE Membros Set nome = ?, nome_responsavel = ?, telefone = ?, telefone2 = ?, data_nascimento = ?, data_inscricao = ?, data_vencimento = ? WHERE prontuario = ?
     """
     cursor.execute(query, values)
     conn.commit()
