@@ -102,6 +102,29 @@ def salvar_membro():
 #Atualizar membro
 def update_membro():
 
+    #Função para salvar no banco
+    def salvar_update():
+        nome_membro = str(entry_nome.get())
+        telefone_membro = str(entry_telefone.get())
+        data_nascimento_membro = str(entry_data_nascimento.get())
+
+        lista = [nome_membro, telefone_membro, data_nascimento_membro, valor_id]
+
+        for item in lista:
+            if item == '':
+                messagebox.showerror('Erro', 'preencha todos os campos')
+                return
+
+        # atualizando no banco
+        update_membro(lista)
+
+        messagebox.showinfo('Sucesso', 'Membro atualizado com sucesso.')
+
+        mostrar_tabela()
+
+        botao_salvar_atualizacao.destroy()
+
+    #Carregar dados nas entries
     try:
         tree_itens = tree_membro.focus()
         tree_dictionary = tree_membro.item(tree_itens)
@@ -113,26 +136,11 @@ def update_membro():
         entry_telefone.insert(0, tree_lista[2])
         entry_data_nascimento.insert(0, tree_lista[3])
 
-        def update():
-            nome_membro = str(entry_nome.get())
-            telefone_membro = str(entry_telefone.get())
-            data_nascimento_membro = str(entry_data_nascimento.get())
 
-            lista = [nome_membro, telefone_membro, data_nascimento_membro, valor_id]
-
-            for item in lista:
-                if item == '':
-                    messagebox.showerror('Erro', 'preencha todos os campos')
-                    return
-
-            # atualizando no banco
-            update_membro(lista)
-
-            messagebox.showinfo('Sucesso', 'Novo membro cadastrado com sucesso.')
-
-
-            mostrar_tabela()
         # botao_salvar_atualizacao
+        botao_salvar_atualizacao = Button(frame_detalhes, command=lambda: salvar_update(), anchor=CENTER, text='Salvar Atualização'.upper(),width=20, overrelief=RIDGE, font=('Ivy 7 bold'), bg=cor19, fg=cor21)
+        botao_salvar_atualizacao.place(x=450, y=100)
+
     except:
         print("Hello Morning")
 
@@ -223,8 +231,8 @@ def update():
     botao_carregar.place(x=280, y=10)
 
     #Botão deletar
-    botao_deletar = Button(frame_detalhes, command=lambda: update_membro(), anchor=CENTER, text='Deletar'.upper(),width=10, overrelief=RIDGE, font=('Ivy 7 bold'), bg=cor17, fg=cor21)
-    botao_deletar.place(x=280, y=10)
+    botao_deletar = Button(frame_detalhes, command=lambda: update_membro(), anchor=CENTER, text='Deletar'.upper(),width=10, overrelief=RIDGE, font=('Ivy 7 bold'), bg=cor6, fg=cor21)
+    botao_deletar.place(x=202, y=10)
 
 
     #Linha divisoria aqui
@@ -244,8 +252,8 @@ def update():
     mostrar_tabela()
 
 #Deleta algo
-def deletar():
-    print('Excluído com sucesso')
+# def deletar():
+#     print('Excluído com sucesso')
 
 
 #Controle--------------------------------------
@@ -260,8 +268,8 @@ def control(i):
         cadastrar()
     elif i == 'atualizar':
         update()
-    elif i == 'deletar':
-        deletar()
+    # elif i == 'deletar':
+    #     deletar()
 
     #
     # if i == 'cadastro':
@@ -304,11 +312,11 @@ botao_atualizar = Button(frame_dados, command=lambda:control('atualizar'), image
 botao_atualizar.grid(row=1, column=1)
 
 #Botão Deletar Membro
-imagem_excluir = Image.open('Assets/excluir.png')
-imagem_excluir = imagem_excluir.resize((18,18))
-imagem_excluir = ImageTk.PhotoImage(imagem_excluir)
-botao_deletar = Button(frame_dados, command=lambda:control('deletar'), image = imagem_excluir, text="Deletar", width=100, compound=LEFT, overrelief=RIDGE, font=('Ivy 11'), bg=cor1, fg=cor21)
-botao_deletar.grid(row=1, column=2)
+# imagem_excluir = Image.open('Assets/excluir.png')
+# imagem_excluir = imagem_excluir.resize((18,18))
+# imagem_excluir = ImageTk.PhotoImage(imagem_excluir)
+# botao_deletar = Button(frame_dados, command=lambda:control('deletar'), image = imagem_excluir, text="Deletar", width=100, compound=LEFT, overrelief=RIDGE, font=('Ivy 11'), bg=cor1, fg=cor21)
+# botao_deletar.grid(row=1, column=2)
 
 # Test --------------------------------------
 
