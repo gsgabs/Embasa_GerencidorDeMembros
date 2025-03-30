@@ -201,6 +201,10 @@ def carregar_entries():
     entry_data_nascimento = DateEntry(frame_detalhes, width=18, bg=cor12, fg=cor21, borderwidth=2, year=2025)
     entry_data_nascimento.place(x=450, y=40)
 
+    # Botões
+    botao_salvar = Button(frame_detalhes, command=lambda: salvar_membro(), anchor=CENTER, text='Salvar'.upper(),width=10, overrelief=RIDGE, font=('Ivy 7 bold'), bg=cor14, fg=cor21)
+    botao_salvar.place(x=357, y=10)
+
 
 #Funções dos botões de cima ------------------------------------------------------------------------------------------
 #Mostra tela de cadastro
@@ -208,17 +212,25 @@ def cadastrar():
 
     carregar_entries()
 
-    # Botões
-    botao_salvar = Button(frame_detalhes, command=lambda:salvar_membro(), anchor=CENTER, text='Salvar'.upper(), width=10, overrelief=RIDGE, font=('Ivy 7 bold'), bg=cor14, fg=cor21)
-    botao_salvar.place(x=357, y=10)
 
-# Mostra frame tabela
+# Mostra tela de atualizar e deletar
 def update():
 
     carregar_entries()
 
+    # Botão carregar
+    botao_carregar = Button(frame_detalhes, command=lambda: update_membro(), anchor=CENTER, text='Carregar'.upper(),width=10, overrelief=RIDGE, font=('Ivy 7 bold'), bg=cor17, fg=cor21)
+    botao_carregar.place(x=280, y=10)
+
+    #Botão deletar
+    botao_deletar = Button(frame_detalhes, command=lambda: update_membro(), anchor=CENTER, text='Deletar'.upper(),width=10, overrelief=RIDGE, font=('Ivy 7 bold'), bg=cor17, fg=cor21)
+    botao_deletar.place(x=280, y=10)
+
+
     #Linha divisoria aqui
 
+
+    #Pesquisa
     label_nome_procurar = Label(frame_detalhes, text="Procurar Aluno [Inserir Nome]", height=1, anchor=NW, font=('Ivy 10'), bg=cor12, fg=cor21)
     label_nome_procurar.place(x=10, y=160)
     entry_nome_procurar = Entry(frame_detalhes, width=40, justify="center", relief="solid",font=('Ivy 10'))
@@ -227,11 +239,9 @@ def update():
     botao_procurar = Button(frame_detalhes, anchor="center", text="Procurar", width=9, overrelief="ridge", font=("Ivy 7 bold"), bg=cor11, fg=cor21)
     botao_procurar.place(x=10, y=220)
 
-    # global frame_tabela_in
-    # frame_tabela_in = Frame(frame_tabela, width=800, height=603, bg=cor18)
-    # frame_tabela_in.grid(row=0, column=0, pady=10, padx=10, sticky=NSEW)
+
+    #Tabela no frame da direita
     mostrar_tabela()
-    print('Atualizar')
 
 #Deleta algo
 def deletar():
