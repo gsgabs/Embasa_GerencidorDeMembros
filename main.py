@@ -27,12 +27,14 @@ tempo_de_vencimento = '+90 days'
 def inserir_membro(values):
     values.append(tempo_de_vencimento)
     query = """
-        INSERT INTO Membros (nome, telefone, data_nascimento, data_inscricao, data_vencimento)
-        VALUES (?, ?, ?, DATE('now'), DATE('now', ?)) 
+        INSERT INTO Membros (nome, nome_responsavel, telefone, telefone2, data_nascimento, data_inscricao, data_vencimento)
+        VALUES (?, ?, ?, ?, ?, DATE('now'), DATE('now', ?)) 
     """
-    if values[0] != "" and values[1] != "":
-        cursor.execute(query, values)
-        conn.commit()
+    cursor.execute(query, values)
+    conn.commit()
+    # if values[0] != "" and values[1] != "":
+    #     cursor.execute(query, values)
+    #     conn.commit()
 
 #Checando Membro R
 def read_membro():
@@ -69,13 +71,13 @@ def delete_membro(valor):
 
 #Test Area ------------------------------------------------
 
-# Inserindo diretamente para teste
+#Inserindo diretamente para teste
 # cursor.execute("""
-#     INSERT INTO Membros (nome, telefone, data_nascimento, data_inscricao, data_vencimento)
+#     INSERT INTO Membros (nome, nome_responsavel, telefone, telefone2, data_nascimento, data_inscricao, data_vencimento)
 #     VALUES
-#     ('Joana D Arc', '11987654321', '1412-01-06', DATE('now'), DATE('now', ?)),
-#     ('Cristovão Colombo', '21987654321', '1451-10-31', DATE('now'), DATE('now', ?)),
-#     ('Ezio Auditore', '31987654321', '1459-06-24', DATE('now'), DATE('now', ?))
+#     ('Joana D Arc', 'Joao Darco', '11987654321', '1199902888', '1412-01-06', DATE('now'), DATE('now', ?)),
+#     ('Cristovão Colombo', 'Mrs. Cristoviana', '21987654321', '14666325', '1451-10-31', DATE('now'), DATE('now', ?)),
+#     ('Ezio Auditore', 'Papa emeritus I', '31987654321', '00007000', '1459-06-24', DATE('now'), DATE('now', ?))
 # """, (tempo_de_vencimento, tempo_de_vencimento, tempo_de_vencimento))
 
 

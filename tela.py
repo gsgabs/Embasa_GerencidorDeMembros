@@ -7,7 +7,7 @@ from tkcalendar import DateEntry, Calendar
 from tkinter import messagebox
 from datetime import date
 
-from main import inserir_membro, read_membro
+from main import inserir_membro, read_membro, update_membro
 
 # import filediolague
 
@@ -78,10 +78,14 @@ global entry_nome, entry_nome_responsavel, entry_telefone, entry_telefone_dois, 
 #Função dos botões da tela cadastrar---------------------------------------------
 def salvar_membro():
     nome_membro = str(entry_nome.get())
+    nome_responsavel = str(entry_nome_responsavel.get)
     telefone_membro = str(entry_telefone.get())
+    telefone_dois = str(entry_telefone_dois)
     data_nascimento_membro = str(entry_data_nascimento.get())
+    data_inscricao_membro = str(entry_data_inscricao)
+    data_vencimento_membro = str(entry_data_vencimento)
 
-    lista = [nome_membro, telefone_membro, data_nascimento_membro]
+    lista = [nome_membro, nome_responsavel, telefone_membro, telefone_dois, data_nascimento_membro]
 
     for item in lista:
         if item == '':
@@ -100,7 +104,7 @@ def salvar_membro():
     mostrar_tabela()
 
 #Atualizar membro
-def update_membro():
+def atualizar_membro():
 
     #Função para salvar no banco
     def salvar_update():
@@ -284,7 +288,7 @@ def update():
     carregar_entries()
 
     # Botão carregar
-    botao_carregar = Button(frame_detalhes, command=lambda: update_membro(), anchor=CENTER, text='Carregar'.upper(),width=10, overrelief=RIDGE, font=('Ivy 7 bold'), bg=cor17, fg=cor21)
+    botao_carregar = Button(frame_detalhes, command=lambda: atualizar_membro(), anchor=CENTER, text='Carregar'.upper(),width=10, overrelief=RIDGE, font=('Ivy 7 bold'), bg=cor17, fg=cor21)
     botao_carregar.place(x=280, y=10)
 
     #Botão deletar
