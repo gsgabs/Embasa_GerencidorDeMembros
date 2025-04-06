@@ -365,21 +365,21 @@ def control(i):
 
 #Botões no topo-------------------------------------
 #Botão Cadastrar Membro
-imagem_cadastro = Image.open('Assets/adicionar.png')
+imagem_cadastro = Image.open('assets/adicionar.png')
 imagem_cadastro = imagem_cadastro.resize((18,18))
 imagem_cadastro = ImageTk.PhotoImage(imagem_cadastro)
 botao_cadastro = Button(frame_dados, command=lambda:control('cadastro'), image = imagem_cadastro, text="Cadastrar", width=100, compound=LEFT, overrelief=RIDGE, font=('Ivy 11'), bg=cor1, fg=cor21)
 botao_cadastro.grid(row=1, column=0)
 
 #Botão Atualizar Membro
-imagem_atualizar = Image.open('Assets/atualizar.png')
+imagem_atualizar = Image.open('assets/atualizar.png')
 imagem_atualizar = imagem_atualizar.resize((18,18))
 imagem_atualizar = ImageTk.PhotoImage(imagem_atualizar)
 botao_atualizar = Button(frame_dados, command=lambda:control('atualizar'), image = imagem_atualizar, text="Atualizar", width=100, compound=LEFT, overrelief=RIDGE, font=('Ivy 11'), bg=cor1, fg=cor21)
 botao_atualizar.grid(row=1, column=1)
 
 #Botão Deletar Membro
-# imagem_excluir = Image.open('Assets/excluir.png')
+# imagem_excluir = Image.open('assets/excluir.png')
 # imagem_excluir = imagem_excluir.resize((18,18))
 # imagem_excluir = ImageTk.PhotoImage(imagem_excluir)
 # botao_deletar = Button(frame_dados, command=lambda:control('deletar'), image = imagem_excluir, text="Deletar", width=100, compound=LEFT, overrelief=RIDGE, font=('Ivy 11'), bg=cor1, fg=cor21)
