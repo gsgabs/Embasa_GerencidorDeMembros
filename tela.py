@@ -78,12 +78,12 @@ global entry_nome, entry_nome_responsavel, entry_telefone, entry_telefone_dois, 
 #Função dos botões da tela cadastrar---------------------------------------------
 def salvar_membro():
     nome_membro = str(entry_nome.get())
-    nome_responsavel = str(entry_nome_responsavel.get)
+    nome_responsavel = str(entry_nome_responsavel.get())
     telefone_membro = str(entry_telefone.get())
-    telefone_dois = str(entry_telefone_dois)
+    telefone_dois = str(entry_telefone_dois.get())
     data_nascimento_membro = str(entry_data_nascimento.get())
-    data_inscricao_membro = str(entry_data_inscricao)
-    data_vencimento_membro = str(entry_data_vencimento)
+    data_inscricao_membro = str(entry_data_inscricao.get())
+    data_vencimento_membro = str(entry_data_vencimento.get())
 
     lista = [nome_membro, nome_responsavel, telefone_membro, telefone_dois, data_nascimento_membro]
 
@@ -97,9 +97,11 @@ def salvar_membro():
 
     messagebox.showinfo('Sucesso', 'Novo membro cadastrado com sucesso.')
 
-    entry_nome.delete(0,END)
-    entry_telefone.delete(0, END)
-    entry_data_nascimento(0, END)
+    # entry_nome.delete(0,END)
+    # entry_telefone.delete(0, END)
+    # entry_data_nascimento(0, END)
+
+    limpar_entries()
 
     mostrar_tabela()
 
@@ -109,12 +111,12 @@ def atualizar_membro():
     #Função para salvar no banco
     def salvar_update():
         nome_membro = str(entry_nome.get())
-        nome_responsavel = str(entry_nome_responsavel.get)
+        nome_responsavel = str(entry_nome_responsavel.get())
         telefone_membro = str(entry_telefone.get())
-        telefone_dois = str(entry_telefone_dois)
+        telefone_dois = str(entry_telefone_dois.get())
         data_nascimento_membro = str(entry_data_nascimento.get())
-        data_inscricao_membro = str(entry_data_inscricao)
-        data_vencimento_membro = str(entry_data_vencimento)
+        data_inscricao_membro = str(entry_data_inscricao.get())
+        data_vencimento_membro = str(entry_data_vencimento.get())
 
         lista = [nome_membro, nome_responsavel, telefone_membro, telefone_dois, data_nascimento_membro, data_inscricao_membro, data_vencimento_membro, valor_id]
 
@@ -130,9 +132,10 @@ def atualizar_membro():
 
         mostrar_tabela()
 
-        entry_nome.delete(0, END)
-        entry_telefone.delete(0, END)
-        entry_data_nascimento(0, END)
+        limpar_entries()
+        # entry_nome.delete(0, END)
+        # entry_telefone.delete(0, END)
+        # entry_data_nascimento(0, END)
 
         botao_salvar_atualizacao.destroy()
 
@@ -271,6 +274,7 @@ def limpar_entries():
     entry_telefone_dois.delete(0,END)
     # Resetando os DateEntry
     entry_data_nascimento.set_date(None)
+    entry_data_nascimento.delete(0, END)
     entry_data_inscricao.set_date(None)
     entry_data_vencimento.set_date(None)
 
