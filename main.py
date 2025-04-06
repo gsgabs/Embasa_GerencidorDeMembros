@@ -103,7 +103,3 @@ conn.commit()
 # Fechando a conexão
 atexit.register(fechar_conexao)
 
-
-
-
-

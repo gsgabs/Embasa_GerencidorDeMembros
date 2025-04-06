@@ -142,12 +142,12 @@ def atualizar_membro():
     #Carregar dados nas entries
     try:
 
-        # Limpar entries
-        # limpar_entries()
+        #Limpar entries
+        limpar_entries()
         # Resetando os DateEntry
-        entry_data_nascimento.set_date(None)
-        entry_data_inscricao.set_date(None)
-        entry_data_vencimento.set_date(None)
+        # entry_data_nascimento.set_date(None)
+        # entry_data_inscricao.set_date(None)
+        # entry_data_vencimento.set_date(None)
 
         tree_itens = tree_membro.focus()
         tree_dictionary = tree_membro.item(tree_itens)
@@ -186,7 +186,7 @@ def mostrar_tabela():
 
     global tree_membro
 
-    tree_membro = ttk.Treeview(frame_tabela_in, selectmode="extended",columns=list_header, show="headings")
+    tree_membro = ttk.Treeview(frame_tabela_in, selectmode="extended",columns=list_header, show="headings", height=25)
 
     #vertical scrollbar
     vsb = ttk.Scrollbar(frame_tabela_in, orient="vertical", command=tree_membro.yview)
@@ -273,10 +273,12 @@ def limpar_entries():
     entry_telefone.delete(0, END)
     entry_telefone_dois.delete(0,END)
     # Resetando os DateEntry
-    entry_data_nascimento.set_date(None)
     entry_data_nascimento.delete(0, END)
-    entry_data_inscricao.set_date(None)
-    entry_data_vencimento.set_date(None)
+    entry_data_inscricao.delete(0, END)
+    entry_data_vencimento.delete(0, END)
+    # entry_data_nascimento.set_date(None)
+    # entry_data_inscricao.set_date(None)
+    # entry_data_vencimento.set_date(None)
 
 
 #Funções dos botões de cima ------------------------------------------------------------------------------------------
