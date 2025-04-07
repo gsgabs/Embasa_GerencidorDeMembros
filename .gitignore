@@ -4,4 +4,5 @@
 *.pyc
 *.xml
 *.iml
-.idea/Embasa_GerencidorDeMembros.iml
+/.venv
+
