@@ -34,6 +34,8 @@ cor18 = "#E0FFFF" #Light Cyan
 cor19 = "#40E0D0" #Turquesa
 cor20 = "#00BFFF" #DeepSkyBlue
 cor21 = "#36454F" #Carvão
+cor22 = "#EDEADE" #Alabaster
+cor23 = "#FFFDD0" #Cream
 
 #Criando Janela -----------------------------------------------------------
 janela = Tk()
@@ -297,9 +299,13 @@ def update():
     botao_carregar = Button(frame_detalhes, command=lambda: atualizar_membro(), anchor=CENTER, text='Carregar'.upper(),width=10, overrelief=RIDGE, font=('Ivy 7 bold'), bg=cor17, fg=cor21)
     botao_carregar.place(x=280, y=10)
 
-    #Botão deletar
-    botao_deletar = Button(frame_detalhes, command=lambda: limpar_entries(), anchor=CENTER, text='Deletar'.upper(),width=10, overrelief=RIDGE, font=('Ivy 7 bold'), bg=cor6, fg=cor21)
-    botao_deletar.place(x=202, y=10)
+    #Botão limpar
+    botao_limpar = Button(frame_detalhes, command=lambda: limpar_entries(), anchor=CENTER, text='Limpar'.upper(), width=10, overrelief=RIDGE, font=('Ivy 7 bold'), bg=cor10, fg=cor23)
+    botao_limpar.place(x=202, y=10)
+
+    # Botão deletar
+    botao_deletar = Button(frame_detalhes, command=lambda: limpar_entries(), anchor=CENTER, text='Deletar'.upper(), width=10, overrelief=RIDGE, font=('Ivy 7 bold'), bg=cor6, fg=cor23)
+    botao_deletar.place(x=124, y=10)
 
 
     #Linha divisoria aqui
