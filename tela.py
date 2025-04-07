@@ -7,7 +7,7 @@ from tkcalendar import DateEntry, Calendar
 from tkinter import messagebox
 from datetime import date
 
-from main import inserir_membro, read_membro, update_membro
+from main import inserir_membro, read_membro, update_membro, delete_membro
 
 # import filediolague
 
@@ -75,7 +75,7 @@ frame_tabela.grid_propagate(False)
 # frame_tabela_in.grid(row=0, column=0, pady=10, padx=10, sticky=NSEW)
 
 #Variáveis Globais
-global entry_nome, entry_nome_responsavel, entry_telefone, entry_telefone_dois, entry_data_nascimento, entry_data_inscricao, entry_data_vencimento
+global entry_nome, entry_nome_responsavel, entry_telefone, entry_telefone_dois, entry_data_nascimento, entry_data_inscricao, entry_data_vencimento, entry_nome_procurar
 
 #Função dos botões da tela cadastrar---------------------------------------------
 def salvar_membro():
@@ -172,6 +172,15 @@ def atualizar_membro():
 
     except:
         print("Hello Morning")
+
+#Deletar Membro
+def deletar_membro():
+    #deleta
+    id_procurar = str(entry_nome_procurar.get())
+    delete_membro(id_procurar)
+
+    mostrar_tabela()
+    limpar_entries()
 
 #Função de mostrar a tabela -----------------------------------------------------
 def mostrar_tabela():
@@ -293,6 +302,8 @@ def cadastrar():
 # Mostra tela de atualizar e deletar
 def update():
 
+    global entry_nome_procurar
+
     carregar_entries()
 
     # Botão carregar
@@ -304,7 +315,7 @@ def update():
     botao_limpar.place(x=202, y=10)
 
     # Botão deletar
-    botao_deletar = Button(frame_detalhes, command=lambda: limpar_entries(), anchor=CENTER, text='Deletar'.upper(), width=10, overrelief=RIDGE, font=('Ivy 7 bold'), bg=cor6, fg=cor23)
+    botao_deletar = Button(frame_detalhes, command=lambda: deletar_membro(), anchor=CENTER, text='Deletar'.upper(), width=10, overrelief=RIDGE, font=('Ivy 7 bold'), bg=cor6, fg=cor23)
     botao_deletar.place(x=124, y=10)
 
 
@@ -313,9 +324,9 @@ def update():
 
     #Pesquisa
     label_nome_procurar = Label(frame_detalhes, text="Procurar Aluno [Inserir Nome]", height=1, anchor=NW, font=('Ivy 10'), bg=cor12, fg=cor21)
-    label_nome_procurar.place(x=10, y=220)
+    label_nome_procurar.place(x=10, y=230)
     entry_nome_procurar = Entry(frame_detalhes, width=40, justify="center", relief="solid",font=('Ivy 10'))
-    entry_nome_procurar.place(x=10, y=250)
+    entry_nome_procurar.place(x=10, y=260)
 
     botao_procurar = Button(frame_detalhes, anchor="center", text="Procurar", width=9, overrelief="ridge", font=("Ivy 7 bold"), bg=cor11, fg=cor21)
     botao_procurar.place(x=10, y=280)
