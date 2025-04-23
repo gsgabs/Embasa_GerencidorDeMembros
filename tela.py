@@ -211,7 +211,7 @@ def mostrar_tabela():
     frame_tabela_in.grid_rowconfigure(0, weight=12)
 
     hd=["nw","nw","e","nw", "e","e","nw","e"]
-    h=[80,150, 150, 80,50,80,80,80]
+    h=[80,120, 120, 80,70,80,80,80]
     n=0
 
     for col in list_header:
